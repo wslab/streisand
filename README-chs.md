@@ -1,10 +1,11 @@
 ![Streisand Logo](https://raw.githubusercontent.com/jlund/streisand/master/logo.jpg "Automate the effect")
 
 - - -
-[English](README.md), [Français](README-fr.md), [简体中文](README-chs.md), [Русский](README-ru.md) | [Mirror](https://area51.threeletter.agency/mirrors/streisand) | [Mirror 2](https://gitlab.com/alimakki/streisand)
+[English](README.md), [Français](README-fr.md), [简体中文](README-chs.md), [Русский](README-ru.md) | [Mirror](https://gitlab.com/alimakki/streisand)
 - - -
 
 [![Build Status](https://travis-ci.org/StreisandEffect/streisand.svg?branch=master)](https://travis-ci.org/StreisandEffect/streisand)
+[![Twitter](https://img.shields.io/twitter/url/https/twitter.com/espadrine.svg?style=social&label=Follow%20%40StreisandVPN)](https://twitter.com/StreisandVPN)
 
 Streisand
 =========
@@ -44,25 +45,25 @@ Streisand介绍
   * Windows, macOS, Android 和 iOS 用户可以使用系统自带的 VPN 进行设置、连接，而不需要另外下载第三方的软件来实现。
 * [Monit](https://mmonit.com/monit/)
   * 能够监视、处理运行状态，针对那些奔溃的进程或者没有响应的进程进行自动重启和维护。
-* [OpenSSH](http://www.openssh.com/)
+* [OpenSSH](https://www.openssh.com/)
   * 支持 Windows 和 Android 的 SSH 隧道， 并且需要使用 PuTTY 将默认的密钥对导出成 .ppk 的格式；
   * [Tinyproxy](https://banu.com/tinyproxy/) 默认安装并绑定到主机，它作为一个 http(s) 代理提供给那些原生不支持 SOCKS 代理的软件通过 SSH 隧道访问网络，比如说 Android 上的鸟嘀咕。
   * 针对 [sshuttle](https://github.com/sshuttle/sshuttle) 的一个无特权转发用户和产生的 SSH 密钥对，同样也兼容 SOCKS；
-* [OpenConnect](http://www.infradead.org/ocserv/index.html) / [Cisco AnyConnect](http://www.cisco.com/c/en/us/products/security/anyconnect-secure-mobility-client/index.html)
+* [OpenConnect](https://ocserv.gitlab.io/www/index.html) / [Cisco AnyConnect](https://www.cisco.com/c/en/us/products/security/anyconnect-secure-mobility-client/index.html)
   * oepnConnect (ocserv) 是一个非常强劲、轻巧的 VPN 服务器，并且完全兼容思科的 AnyConnect 客户端；
-  * 其中包涵了很多顶级的标准[协议](http://www.infradead.org/ocserv/technical.html)，比如：HTTP, TLS 和 DTLS， 当然还有很多被跨国公司广泛使用的且流行的技术；
+  * 其中包涵了很多顶级的标准[协议](https://ocserv.gitlab.io/www/technical.html)，比如：HTTP, TLS 和 DTLS， 当然还有很多被跨国公司广泛使用的且流行的技术；
    * 这就意味着 OpenConnect 非常易用且高速，而且经得住审查的考验，几乎从未被封锁。
 * [OpenVPN](https://openvpn.net/index.php/open-source.html)
   * 从自带的 .ovpn 配置文件生成一个简单的客户端配置文件；
   * 同时支持 TCP 和 UDP 连接；
   * 客户端的 DNS 解析由 [Dnsmasq](http://www.thekelleys.org.uk/dnsmasq/doc.html) 负责，避免 DNS 泄露；
   * 启用 TLS 认证，有助于防止主动探测攻击。错误的 HMAC 流量并不会被轻易丢弃。
-* [Shadowsocks](http://shadowsocks.org/en/index.html)
+* [Shadowsocks](https://shadowsocks.org/en/index.html)
   * 安装的是高性能的 libev 版本，这个版本能够处理数以千计的并发连接；
   * Android 和 iOS 只需要扫描一个二维码就能完成自动配置。DNS 可以设置为 8.8.8.8，或者将配置一一复制粘贴到客户端上；
   * 采用 ChaCha20 和 Poly1305 对 [AEAD](https://shadowsocks.org/en/spec/AEAD-Ciphers.html) 进行加密，增强了安全性并提升了穿透性；
   * 使用 [simple-obfs](https://github.com/shadowsocks/simple-obfs) 插件提供流量混淆以便于从审查的网络中脱逃（尤其是QOS节流中）。
-* [sslh](http://www.rutschle.net/tech/sslh.shtml)
+* [sslh](https://www.rutschle.net/tech/sslh/README.html)
   * sslh 是一个协议解复用器（这个我不了解，如果有更好的翻译请request），在一个高度限制的网络环境下（只能访问 http 端口的网络为例），它作为一种备选方案，仍然可以通过 OpenSSH 和 OpenVPN 进行连接，因为通过 sslh 让二者共享了 443 端口。
 * [Stunnel](https://www.stunnel.org/index.html)
   * 监听并且将 OpenVPN 的流量进行封装，让 OpenVPN 的流量伪装成标注的 SSL 流量，从而可以让 OpenVPN 客户端成功通过隧道进行连接，躲避深度包检测。
@@ -84,7 +85,7 @@ Streisand介绍
 在你搞事情之前，认真阅读
 
 ### 重要说明 ###
-Streisand 基于 [Ansible](http://www.ansible.com/home) ，它可以在远程服务器完成自动配置、打包等工作，Streisand 是将远程服务器自动配置成为多个 VPN 服务及科学上网的工具。
+Streisand 基于 [Ansible](https://www.ansible.com/) ，它可以在远程服务器完成自动配置、打包等工作，Streisand 是将远程服务器自动配置成为多个 VPN 服务及科学上网的工具。
 
 Streisand 运行在**你自己的计算机上时（或者你电脑的虚拟机上时）**，它将把网关部署到你 VPS 提供商的**另一个服务器**上（通过你自己的API自动生成）。另外，如果 Streisand 运行在 VPS 上，它将会把网关部署到**另一个 VPS 上**，所以说原先你运行 Streisand 的那个 VPS 就多余了，记得部署完成并获得文档后把它删掉，而部署出来的那个 VPS 你是无法使用 SSH 连接进去的，除非你有公钥（当然这是不可能的，因为整个配置过程都没有提供公钥给你下载或者你想办法把它搞出来）。
 
@@ -106,7 +107,7 @@ Streisand 运行在**你自己的计算机上时（或者你电脑的虚拟机�
   * 在 Fedora
 
         sudo dnf install git
-  * 在 macOS 上 （需要通过 [Homebrew](http://brew.sh/) 进行安装）
+  * 在 macOS 上 （需要通过 [Homebrew](https://brew.sh/) 进行安装）
 
         brew install git
 * 利用 Python 安装 [pip](https://pip.pypa.io/en/latest/) 包管理
@@ -121,7 +122,7 @@ Streisand 运行在**你自己的计算机上时（或者你电脑的虚拟机�
         sudo easy_install pip
         sudo pip install pycurl
 
-* 安装 [Ansible](http://www.ansible.com/home) 。
+* 安装 [Ansible](https://www.ansible.com/) 。
   * 在 macOS 上
 
         brew install ansible
@@ -131,7 +132,7 @@ Streisand 运行在**你自己的计算机上时（或者你电脑的虚拟机�
 * 以下使用 pip 安装的 Python 库根据你所使用的 VPS 供应商不同而不同。如果你准备将目前使用的 VPS 变成网关，可以跳过此步。
   * 亚马逊 EC2
 
-        sudo pip install boto
+        sudo pip install boto boto3
   * 微软云服务
 
         sudo pip install ansible[azure]
@@ -140,7 +141,7 @@ Streisand 运行在**你自己的计算机上时（或者你电脑的虚拟机�
         sudo pip install dopy==0.3.5
   * Google
 
-        sudo pip install "apache-libcloud>=1.5.0"
+        sudo pip install "apache-libcloud>=1.17.0"
   * Linode
 
         sudo pip install linode-python
@@ -156,9 +157,6 @@ Streisand 运行在**你自己的计算机上时（或者你电脑的虚拟机�
 1. 从 Streisand 抓取源码
 
         git clone https://github.com/StreisandEffect/streisand.git && cd streisand
-   如果 Github 被封锁了，就用我们提供的镜像。
-
-        git clone https://area51.threeletter.agency/mirrors/streisand.git && cd streisand
 2. 执行 Streisand 脚本。
 
         ./streisand
@@ -230,4 +228,4 @@ Streisand 运行在**你自己的计算机上时（或者你电脑的虚拟机�
 
 非常感谢 [Paul Wouters](https://nohats.ca/) 的 [The Libreswan Project](https://libreswan.org/) ，正是他的耐心调试和设置，才让 L2TP/IPsec 工作的那么好。
 
-另外，[Joshua Lund](https://github.com/jlund)开始这个项目工作的时候，他差不多把 [Starcadian's](http://starcadian.com/) 的 'Sunset Blood' 听了300遍（译者：这张专辑节奏感不错）。
+另外，[Joshua Lund](https://github.com/jlund)开始这个项目工作的时候，他差不多把 [Starcadian's](https://www.starcadian.com/) 的 'Sunset Blood' 听了300遍（译者：这张专辑节奏感不错）。
